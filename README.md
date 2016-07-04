@@ -1,2 +1,2 @@
-# Template
-template for ACM
+# Codes
+for ACM ICPC
