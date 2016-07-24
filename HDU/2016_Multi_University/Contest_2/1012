@@ -26,8 +26,8 @@ typedef vector<int> vi;
 const int N = 101010;
 int T , n , m;
 char s[N] , t[N];
-int ok[N];
-bitset<5001> B[3] , I , P[26] , Q[26][26];
+char ok[N];
+bitset<5001> B[3] , P[26] , Q[26][26];
 int c[3];
 
 int main(){
@@ -35,29 +35,28 @@ int main(){
     rep(i,0,T){
         scanf("%d%d",&n,&m);
         scanf("%s%s",s, t + 1);
-        rep(i,0,26) P[i] = I;
-        rep(i,0,26) rep(j,0,26) Q[i][j] = I;
+        rep(i,0,26) P[i].reset();
+        rep(i,0,26) rep(j,0,26) Q[i][j].reset();
         rep(i,1,m+1) P[t[i] - 'a'][i] = 1;
         rep(i,2,m+1){
             int p = t[i-1] - 'a' , q = t[i] - 'a';
             if(p > q) swap(p , q);
             Q[p][q][i] = 1;
         }
-        rep(i,0,3) B[i] = I;
+        rep(i,0,3) B[i].reset();
         rep(i,0,3) c[i] = i;
         B[c[0]][0] = 1;
-        fill(ok , ok + n , 0);
+        fill(ok , ok + n , '0');ok[n] = 0;
         rep(i,0,n){
             swap(c[0] , c[1]);swap(c[1] , c[2]);
-            B[c[0]] = I;B[c[0]][0] = 1;
+            B[c[0]].reset();B[c[0]][0] = 1;
             B[c[0]] |= B[c[2]]<<1&P[s[i] - 'a'];
             int p = s[i-1] - 'a' , q = s[i] - 'a';
             if(p > q) swap(p , q);
             if(i) B[c[0]] |= B[c[1]]<<2&Q[p][q];
-            if(B[c[0]][m] == 1) ok[i-m+1] = 1;
+            if(B[c[0]][m] == 1) ok[i-m+1] = '1';
         }
-        rep(i,0,n) printf("%d",ok[i]);
-        printf("\n");
+        puts(ok);
     }
     return 0;
 }
