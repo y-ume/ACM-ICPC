@@ -101,7 +101,7 @@ void dfs(int u, int sc, int sd) {
 	for (int i = 2; i <= n; i++) {
 		if (vis[i]) continue;
 		if (c[u][i] == -1) continue;
-		if (i != n && c[u][n] != -1 && c[u][i] >= c[i][n] && d[u][i] >= d[u][n]) continue;
+		if (i != n && c[u][n] != -1 && c[u][i] >= c[u][n] && d[u][i] >= d[u][n]) continue;
 		vis[i] = 1;
 		dfs(i, sc + c[u][i], sd + d[u][i]);
 		vis[i] = 0;
