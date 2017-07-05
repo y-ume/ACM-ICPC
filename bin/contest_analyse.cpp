@@ -109,7 +109,7 @@ void output(){
         printf("[  %c  ] : ",i+'A');
         rep(j,0,seg) printf("\x1b[%d;%dm%c\x1b[0m",40,col[i],graph[i][j]);
         if(time[i] >= 3600) printf(" [%02d:%02d:%02d]",time[i]/3600,time[i]/60%60,time[i]%60);
-        if(time[i]) printf(" [%02d:%02d]",time[i]/60,time[i]%60);
+        else if(time[i]) printf(" [%02d:%02d]",time[i]/60,time[i]%60);
         puts("");
     }
     printf("[ SUM ] : ");
