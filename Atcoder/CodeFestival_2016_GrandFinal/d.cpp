@@ -39,7 +39,7 @@ db p[6] , q[6];
 int main(){
   rep(i,0,6) cin >> p[i] , p[i] /= 100;
   rep(i,0,6) cin >> q[i] , q[i] /= 100;
-  function<db(db)> get = [&](db x) -> db {
+  auto get = [&](db x) {
     db res = 0;
     rep(i,0,6) res += max(x * p[i] , (1 - x) * q[i]);
     return res;
