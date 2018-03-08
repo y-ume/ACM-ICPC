@@ -34,27 +34,30 @@ typedef vector<int> vi;
 #define se second
 // }}}
 
-int n , K , cnt[26];
+const db pi = acos(-1.);
+int T , x[2] , y[2];
+db radius[2];
+db o[2] , l[2] , r[2];
 
 int main(){
-  cin >> n >> K;
-  rep(i,0,n) {
-    string s;
-    cin >> s;
-    cnt[s[0] - 'A']++;
-  }
-  int ans = 0;
-  while(true) {
-    sort(cnt , cnt + 26);
-    reverse(cnt , cnt + 26);
-    int c = 0;
-    rep(i,0,26) if(cnt[i]) {
-      cnt[i]--;c++;
-      if(c == K) break;
+  scanf("%d",&T);
+  rep(i,0,T) {
+    rep(i,0,2) scanf("%d%d%lf",x+i,y+i,radius+i);
+    o[0] = 0;
+    o[1] = hypot(x[0] - x[1] , y[0] - y[1]);
+    rep(i,0,2) {
+      l[i] = o[i] - radius[i];
+      r[i] = o[i] + radius[i];
     }
-    if(c == K) ans++;
-    else break;
+    db A = l[1] + r[1] - l[0] - r[0];
+    db B = -2 * (l[1] * r[1] - l[0] * r[0]);
+    db C = (l[0] + r[0]) * l[1] * r[1] - (l[1] + r[1]) * l[0] * r[0];
+    db x = (-B + sqrt(B * B - 4 * A * C)) / (2 * A);
+    rep(i,0,2) {
+      radius[i] = fabs(1 / (l[i] - x) - 1 / (r[i] - x)) / 2;
+    }
+    db ang = asin(fabs(radius[0] - radius[1]) / (radius[0] + radius[1]));
+    printf("%d\n",int(pi / ang));
   }
-  cout << ans << endl;
   return 0;
 }
