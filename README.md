@@ -1,2 +1,1 @@
-# Codes
-for ACM ICPC
+Codes for Programming Contest

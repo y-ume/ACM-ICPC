@@ -1,3 +1,6 @@
+# MACOS
+.DS_Store
+
 # swap
 *.swp
 *~
@@ -16,3 +19,9 @@ _.cpp
 
 # add directory
 ![A-Z]/
+
+# pdf
+*.pdf
+
+# txt
+*.txt
